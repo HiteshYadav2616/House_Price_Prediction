@@ -154,8 +154,8 @@ print(round(example, 2))  # ➜ 435266.65
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/<your-username>/house-price-prediction.git
-   cd house-price-prediction
+   git clone https://github.com/HiteshYadav2616/House_Price_Prediction.git
+   cd House-Price-Prediction
    ```
 2. Install dependencies
    ```bash
