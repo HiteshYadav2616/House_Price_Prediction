@@ -174,11 +174,15 @@ print(round(example, 2))  # ➜ 435266.65
 ```
 ├── House_Price_Prediction.ipynb   # Main notebook: EDA, preprocessing, modeling, tuning
 ├── housing (1).csv                    # Dataset
-├── ocean_proximity_countplot.png
-├── target_distribution.png
-├── numerical_distributions.png
-├── boxplots.png
-├── correlation_heatmap.png
+├── countplot_cat_col.png
+├── distribution_of_target_col.png
+├── distribution_of_num_cols.png
+├── boxplotof_num_cols.png
+├── heatmap.png
+├── test_data_reg_plot.png
+├── train_data_basicReg_plot.png
+├── residual_reg_plot.png
+├── residual_distribution_plot.png
 └── README.md                      # Project documentation
 ```
 
