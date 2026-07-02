@@ -11,7 +11,7 @@ A machine learning project that predicts median house values in California distr
 
 ## 📁 Dataset
 
-The dataset (`housing.csv`) contains 20,640 rows and 10 columns describing California housing districts from the 1990 census, including:
+The dataset (`housing (1).csv`) contains 20,640 rows and 10 columns describing California housing districts from the 1990 census, including:
 
 | Column | Description |
 |---|---|
@@ -32,6 +32,34 @@ Key insights uncovered during EDA:
 - `median_house_value` is capped at 500,001, which may bias predictions for high-end homes.
 - `median_income` shows the strongest positive correlation (0.688) with house value.
 - Distribution plots, boxplots (outlier check), and a correlation heatmap were used to understand feature relationships.
+
+### Categorical Feature: `ocean_proximity`
+![Ocean Proximity Countplot](countplot_cat_col.png)
+
+The dataset is dominated by districts labeled `<1H OCEAN` (~9,100) and `INLAND` (~6,600), with far fewer `NEAR OCEAN` (~2,600) and `NEAR BAY` (~2,300) districts, and only a handful of `ISLAND` records — a strong class imbalance that one-hot encoding must account for.
+
+### Target Variable: `median_house_value`
+![Target Distribution](distribution_of_target_col.png)
+
+The target is right-skewed with a large spike at the ~$500,000 cap, confirming the capping issue noted above — a meaningful number of high-value districts are clipped to this ceiling rather than reflecting their true value.
+
+### Distribution of Numerical Features
+![Numerical Feature Distributions](distribution_of_num_cols.png)
+
+Most count-based features (`total_rooms`, `total_bedrooms`, `population`, `households`) are heavily right-skewed with long tails, while `longitude`, `latitude`, and `housing_median_age` show multi-modal patterns reflecting distinct geographic clusters (e.g., Los Angeles and the Bay Area).
+
+### Outlier Detection
+![Boxplots of Numerical Features](boxplot_of_num_cols.png)
+
+Boxplots reveal significant outliers in `total_rooms`, `total_bedrooms`, `population`, and `households`, consistent with their skewed distributions above. `median_house_value` also shows a cluster of outliers at its capped upper bound.
+
+### Correlation Heatmap
+![Correlation Heatmap](heatmap.png)
+
+Key relationships:
+- `median_income` has the strongest correlation with `median_house_value` (**0.69**).
+- `total_rooms`, `total_bedrooms`, `population`, and `households` are highly inter-correlated (0.86–0.98), as expected since they all scale with district size.
+- `longitude` and `latitude` are strongly negatively correlated (**-0.92**), reflecting California's geographic orientation.
 
 ## ⚙️ Preprocessing Pipeline
 
@@ -133,19 +161,24 @@ print(round(example, 2))  # ➜ 435266.65
    ```bash
    pip install pandas numpy matplotlib seaborn scikit-learn jupyter
    ```
-3. Add the dataset (`housing.csv`) to your working directory and update the file path in the notebook.
+3. Add the dataset (`housing (1).csv`) to your working directory and update the file path in the notebook.
 4. Open and run `House_Price_Prediction.ipynb`:
    ```bash
    jupyter notebook House_Price_Prediction.ipynb
    ```
 
-> 💡 The original notebook was developed in Google Colab and mounts Google Drive to load the dataset. If running locally, replace the `drive.mount(...)` and file path cells with a local path to `housing.csv`.
+> 💡 The original notebook was developed in Google Colab and mounts Google Drive to load the dataset. If running locally, replace the `drive.mount(...)` and file path cells with a local path to `housing (1).csv`.
 
 ## 📂 Project Structure
 
 ```
 ├── House_Price_Prediction.ipynb   # Main notebook: EDA, preprocessing, modeling, tuning
-├── housing.csv                    # Dataset (not included — add your own copy)
+├── housing (1).csv                    # Dataset
+├── ocean_proximity_countplot.png
+├── target_distribution.png
+├── numerical_distributions.png
+├── boxplots.png
+├── correlation_heatmap.png
 └── README.md                      # Project documentation
 ```
 
